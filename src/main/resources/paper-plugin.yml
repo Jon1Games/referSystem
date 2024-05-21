@@ -1,0 +1,4 @@
+name: referSystem
+version: '${version}'
+main: de.jonas.refersystem.ReferSystem
+api-version: '1.20'
