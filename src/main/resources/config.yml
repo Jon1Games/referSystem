@@ -1,0 +1,30 @@
+# Plugin by Jon1Games
+# Discord: jon1games
+# GitHub: https://github.com/Jon1Games/
+
+# Implemented plugins (usable in this Plugin):
+# Minimessage (https://docs.advntr.dev/minimessage/format.html)
+
+# Infos
+# suggestionName is the name that shows up over the chat for you what you know what to type there.
+
+OpenGuiCommand:
+  Permission: "referSystem.opengui"
+  Aliases:
+    - "refer"
+
+InputCommand:
+  Aliases:
+    - "input"
+  suggestionName:
+    OfflinePlacer: "Spieler"
+
+Messages:
+  SamePlayerError: "<red>Du kannst dich nicht selbst als Eingeladener Spieler angeben!</red>"
+  SetInviter: "Du hast jemanden gesetzt, der dich eingeladen hat."
+  AlreadyInviter: "Du hast bereits einen Spieler als den der dich eingeladen hat gesetzt"
+  HowSetInviter: "Nutze /input <spieler> um einen Spieler als den der dich eingeladen hat zu setzen."
+
+FirstJoinTitle:
+  Title: "Test"
+  SubTitle: "Ein Test Text"
