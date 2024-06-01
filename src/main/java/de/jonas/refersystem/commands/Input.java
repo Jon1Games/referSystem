@@ -2,6 +2,7 @@ package de.jonas.refersystem.commands;
 
 import de.jonas.refersystem.DataBasePool;
 import de.jonas.refersystem.ReferSystem;
+import de.jonas.refersystem.Rewards;
 import de.jonas.refersystem.gui.MainGUI;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.arguments.OfflinePlayerArgument;
@@ -21,6 +22,7 @@ public class Input {
     FileConfiguration conf = rs.getConfig();
     DataBasePool db = rs.dbPool;
     MiniMessage mm = MiniMessage.miniMessage();
+    Rewards rw = new Rewards();
 
     public Input() {
 
@@ -43,12 +45,13 @@ public class Input {
 
                     if (player.isOnline()) {
                         Player p = player.getPlayer();
-                        p.getInventory().addItem();
+                        rw.reward1(p);
                     } else {
                         setTableFromDBRewards(db, player.getUniqueId());
                         setTableFromDBUUIDS(db, player.getUniqueId(), sender.getUniqueId());
                     }
 
+                    rw.reward1(sender);
                     sender.sendMessage(mm.deserialize(conf.getString("Messages.SetInviter")));
                     sender.getPersistentDataContainer().set(MainGUI.firstReward, PersistentDataType.BOOLEAN, true);
 
