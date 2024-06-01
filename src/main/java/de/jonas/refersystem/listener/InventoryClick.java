@@ -14,10 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.persistence.PersistentDataType;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class InventoryClick implements Listener {
