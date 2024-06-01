@@ -57,7 +57,7 @@ public final class ReferSystem extends JavaPlugin {
     @Override
     public void onDisable() {
 
-        CommandAPI.onEnable();
+        CommandAPI.onDisable();
 
         dbPool.shutdown();
 
