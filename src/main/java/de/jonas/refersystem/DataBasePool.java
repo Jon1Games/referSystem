@@ -15,7 +15,7 @@ public class DataBasePool {
         config.setDriverClassName("org.mariadb.jdbc.Driver");
         config.setJdbcUrl("jdbc:mariadb://192.168.88.100:3306/referSystem");
         config.setUsername("referSystem");
-        config.setPassword("r0S7p5KmmJWmp2iaKZtlEDrBHFzqNLCvA6M3dN6WbhF6uB7JwmRVcYjEVJUuB3jIZ6j0OtIwgHDRfaGu9PQyY2LRN9sPfzhGG6ffYrZkWZgrzfNiAaZ0pcGr1adR3lHH");
+        config.setPassword("PASSOWER");
         config.setMaximumPoolSize(10);
         config.setMinimumIdle(1);
         config.setMaxLifetime(0);
