@@ -1,10 +1,8 @@
 package de.jonas.refersystem;
 
-import de.jonas.refersystem.commands.Input;
 import de.jonas.refersystem.commands.OpenGUI;
 import de.jonas.refersystem.listener.CheckRewards;
-import de.jonas.refersystem.listener.FirstJoin;
-import de.jonas.refersystem.listener.InventoryClick;
+import de.jonas.stuff.Stuff;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import org.bukkit.Bukkit;
@@ -18,17 +16,17 @@ public final class ReferSystem extends JavaPlugin {
 
     public static ReferSystem INSTACE;
     public DataBasePool dbPool;
+    public Stuff stuff;
 
     @Override
     public void onLoad() {
 
         INSTACE = this;
-
+        stuff = Stuff.INSTANCE;
         dbPool = new DataBasePool();
 
         CommandAPI.onLoad(new CommandAPIBukkitConfig(this));
         new OpenGUI();
-        new Input();
 
     }
 
@@ -68,9 +66,7 @@ public final class ReferSystem extends JavaPlugin {
 
     public void listener() {
         PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new InventoryClick(), this);
         pm.registerEvents(new CheckRewards(), this);
-        pm.registerEvents(new FirstJoin(), this);
     }
 
 }
