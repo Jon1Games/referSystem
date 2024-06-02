@@ -51,7 +51,7 @@ public class MainGUI implements InventoryHolder {
         .setChatEvent((sender, message) -> {
             OfflinePlayer player = Bukkit.getOfflinePlayer(message);
 
-            if (message == "exit") {
+            if (message.equalsIgnoreCase("exit")) {
                 sender.sendMessage("Exited");
                 return;
             }
@@ -107,6 +107,11 @@ public class MainGUI implements InventoryHolder {
         ev.getWhoClicked().openInventory(new MainGUI((Player) ev.getWhoClicked()).getInventory());
     };
 
+    ClickEvent closeInv = ev -> {
+        ev.setCancelled(true);
+        ev.getWhoClicked().closeInventory();
+    };
+
 
     public MainGUI(Player p) {
         if (p == null) return;
@@ -144,7 +149,7 @@ public class MainGUI implements InventoryHolder {
         }
 
         if (container.has(secondReward)) {
-            mainGUI.setItem(15, 
+            mainGUI.setItem(13, 
             new ItemBuilder()
                 .setMaterial(Material.RED_WOOL)
                 .setGlint(false)
@@ -153,7 +158,7 @@ public class MainGUI implements InventoryHolder {
                 .whenClicked(canceEvent)
                 .build());
         } else if (container.has(firstReward) && (p.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) > 14400) {
-            mainGUI.setItem(15, 
+            mainGUI.setItem(13, 
             new ItemBuilder()
                 .setMaterial(Material.GREEN_WOOL)
                 .setGlint(true)
@@ -162,7 +167,7 @@ public class MainGUI implements InventoryHolder {
                 .whenClicked(second)
                 .build());
         } else {
-            mainGUI.setItem(15, 
+            mainGUI.setItem(13, 
             new ItemBuilder()
                 .setMaterial(Material.RED_WOOL)
                 .setGlint(false)
@@ -173,7 +178,7 @@ public class MainGUI implements InventoryHolder {
         }
 
         if (container.has(thirdReward)){
-            mainGUI.setItem(22, 
+            mainGUI.setItem(15, 
             new ItemBuilder()
                 .setMaterial(Material.RED_WOOL)
                 .setGlint(false)
@@ -182,7 +187,7 @@ public class MainGUI implements InventoryHolder {
                 .whenClicked(canceEvent)
                 .build());
         } else if (container.has(secondReward) && (p.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) > 43200) {
-            mainGUI.setItem(22, 
+            mainGUI.setItem(15, 
             new ItemBuilder()
                 .setMaterial(Material.GREEN_WOOL)
                 .setGlint(true)
@@ -191,7 +196,7 @@ public class MainGUI implements InventoryHolder {
                 .whenClicked(third)
                 .build());
         } else {
-            mainGUI.setItem(22, 
+            mainGUI.setItem(15,
             new ItemBuilder()
                 .setMaterial(Material.RED_WOOL)
                 .setGlint(false)
@@ -200,6 +205,13 @@ public class MainGUI implements InventoryHolder {
                 .whenClicked(canceEvent)
                 .build());
         }
+
+        mainGUI.setItem(22, 
+            new ItemBuilder()
+                .setMaterial(Material.BARRIER)
+                .setName("<red>Schließen</red>")
+                .whenClicked(closeInv)
+                .build());
 
     }
 
