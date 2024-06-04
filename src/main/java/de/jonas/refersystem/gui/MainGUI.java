@@ -52,7 +52,7 @@ public class MainGUI implements InventoryHolder {
             OfflinePlayer player = Bukkit.getOfflinePlayer(message);
 
             if (message.equalsIgnoreCase("exit")) {
-                sender.sendMessage("Exited");
+                sender.sendMessage("Vorgang abgebrochen");
                 return;
             }
 
@@ -133,7 +133,7 @@ public class MainGUI implements InventoryHolder {
             new ItemBuilder()
                 .setMaterial(Material.RED_WOOL)
                 .setGlint(false)
-                .addLoreLine("<red>Du hast bereits einen Spieler der dich eingeladen hat gesetzt!</red>")
+                .addLoreLine("<red>Du hast bereits einen Spieler angegeben der dich eingeladen hat!</red>")
                 .setName("<red>Bereits eingegeben</red>")
                 .whenClicked(canceEvent)
                 .build());
@@ -142,7 +142,7 @@ public class MainGUI implements InventoryHolder {
             new ItemBuilder()
                 .setMaterial(Material.GREEN_WOOL)
                 .setGlint(true)
-                .addLoreLine("<green>Du kannst hier den Spieler setzen der dich eingeladen hat und dir Belohnungen sichern.</green>")
+                .addLoreLine("<green>Gib an wer dich eingeladen hat um Belohnungen zu erhalten.</green>")
                 .setName("<green>Eingeladen?</green>")
                 .whenClicked(first)
                 .build());
@@ -162,8 +162,8 @@ public class MainGUI implements InventoryHolder {
             new ItemBuilder()
                 .setMaterial(Material.GREEN_WOOL)
                 .setGlint(true)
-                .addLoreLine("<green>Du kannst diese Belohnung einfordern.</green>")
-                .setName("<green>Einforder bar</green>")
+                .addLoreLine("<green>klicke um deine Belohnung zu erhalten.</green>")
+                .setName("<green>Erledigt</green>")
                 .whenClicked(second)
                 .build());
         } else {
@@ -171,8 +171,8 @@ public class MainGUI implements InventoryHolder {
             new ItemBuilder()
                 .setMaterial(Material.RED_WOOL)
                 .setGlint(false)
-                .addLoreLine("<red>Du must eine Spielzeit von 4 Stunden haben um diese Belohnung einzufordern!</red>")
-                .setName("<red>Nicht einforderbar</red>")
+                .addLoreLine("<red>Spiele 4 Stunden um diese Belohnung zu erhalten!</red>")
+                .setName("<red>Die ersten Stunden</red>")
                 .whenClicked(canceEvent)
                 .build());
         }
@@ -191,8 +191,8 @@ public class MainGUI implements InventoryHolder {
             new ItemBuilder()
                 .setMaterial(Material.GREEN_WOOL)
                 .setGlint(true)
-                .addLoreLine("<green>Du kannst diese Belohnung einfordern.</green>")
-                .setName("<green>Einforder bar</green>")
+                .addLoreLine("<green>klicke um deine Belohnung zu erhalten.</green>")
+                .setName("<green>Erledigt</green>")
                 .whenClicked(third)
                 .build());
         } else {
@@ -200,8 +200,8 @@ public class MainGUI implements InventoryHolder {
             new ItemBuilder()
                 .setMaterial(Material.RED_WOOL)
                 .setGlint(false)
-                .addLoreLine("<red>Du must eine Spielzeit von 12 Stunden haben um diese Belohnung einzufordern!</red>")
-                .setName("<red>Nicht einforderbar</red>")
+                .addLoreLine("<red>Spiele 12 Stunden um diese Belohnung zu erhalten!</red>")
+                .setName("<red>Deine Reise beginnt Stunden</red>")
                 .whenClicked(canceEvent)
                 .build());
         }
