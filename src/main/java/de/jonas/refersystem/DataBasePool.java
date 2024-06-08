@@ -1,8 +1,7 @@
 package de.jonas.refersystem;
 
 import java.sql.*;
-import java.util.Enumeration;
-
+import java.util.*;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -15,7 +14,7 @@ public class DataBasePool {
         config.setDriverClassName("org.mariadb.jdbc.Driver");
         config.setJdbcUrl("jdbc:mariadb://192.168.88.100:3306/referSystem");
         config.setUsername("referSystem");
-        config.setPassword("passwort");
+        config.setPassword("r0S7p5KmmJWmp2iaKZtlEDrBHFzqNLCvA6M3dN6WbhF6uB7JwmRVcYjEVJUuB3jIZ6j0OtIwgHDRfaGu9PQyY2LRN9sPfzhGG6ffYrZkWZgrzfNiAaZ0pcGr1adR3lHH");
         config.setMaximumPoolSize(10);
         config.setMinimumIdle(1);
         config.setMaxLifetime(0);
@@ -76,4 +75,92 @@ public class DataBasePool {
         Statement stmt = con.createStatement();
         stmt.execute(sqlCreate);
     }
+
+    public static void setTableFromDBRewards(DataBasePool pool, UUID uuid) {
+        String querry = "INSERT INTO `rewards` (`uuid`, `reward`) VALUES (?, 1);";
+
+        try {
+            Connection con = pool.getConnection();
+            PreparedStatement sel = con.prepareStatement(querry);
+            sel.setObject(1, uuid);
+            sel.executeUpdate();
+            sel.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setTableFromDBUUIDS(DataBasePool pool, UUID uuid, UUID invitedUuid) {
+        String querry = "INSERT INTO `uuids` (`uuid`, `InvitedUUID`) VALUES (?, ?);";
+
+        try {
+            Connection con = pool.getConnection();
+            PreparedStatement sel = con.prepareStatement(querry);
+            sel.setObject(1, uuid);
+            sel.setObject(2, invitedUuid);
+            sel.executeUpdate();
+            sel.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setTableFromDBRewards(DataBasePool pool, UUID uuid, int reward) {
+        String querry = "INSERT INTO `rewards` (`uuid`, `reward`) VALUES (?, ?);";
+
+        try {
+            Connection con = pool.getConnection();
+            PreparedStatement sel = con.prepareStatement(querry);
+            sel.setObject(1, uuid);
+            sel.setObject(2, reward);
+            sel.executeUpdate();
+            sel.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static UUID getTableFromDBRewards(DataBasePool pool, UUID uuid) {
+        String querry = "SELECT `uuids`.`uuid` FROM `uuids` WHERE `uuids`.`InvitedUUID` = ?;";
+
+        try {
+            Connection con = pool.getConnection();
+            PreparedStatement sel = con.prepareStatement(querry);
+            sel.setObject(1, uuid);
+            ResultSet res = sel.executeQuery();
+            res.first();
+            UUID inv = (UUID) res.getObject("uuid");
+            sel.close();
+            con.close();
+            return inv;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static List<Integer> getRewardsLeft(DataBasePool pool, UUID uuid) {
+        String querry = "DELETE FROM `rewards` WHERE `rewards`.`uuid` = ? RETURNING `rewards`.`uuid`, `rewards`.`reward`;";
+
+        try {
+            Connection con = pool.getConnection();
+            PreparedStatement sel = con.prepareStatement(querry);
+            sel.setObject(1, uuid);
+            ResultSet res = sel.executeQuery();
+            List<Integer> list = new ArrayList<>();
+            for (boolean a = res.first(); a; a = res.next() ) {
+                list.add(res.getInt("reward"));
+            }
+            sel.close();
+            con.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

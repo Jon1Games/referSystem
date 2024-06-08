@@ -7,8 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class OpenGUI {
 
-    ReferSystem rs = ReferSystem.INSTACE;
-    FileConfiguration conf = rs.getConfig();
+    FileConfiguration conf = ReferSystem.INSTACE.getConfig();
 
     public OpenGUI() {
 

@@ -42,6 +42,8 @@ public final class ReferSystem extends JavaPlugin {
             throw new RuntimeException(e);
         }
 
+        new Events().onEnable();
+
         CommandAPI.onEnable();
 
         this.listener();
