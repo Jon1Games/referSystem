@@ -25,7 +25,7 @@ public final class ReferSystem extends JavaPlugin {
         stuff = Stuff.INSTANCE;
         dbPool = new DataBasePool();
 
-        CommandAPI.onLoad(new CommandAPIBukkitConfig(this));
+        if (!CommandAPI.isLoaded()) CommandAPI.onLoad(new CommandAPIBukkitConfig(this));
         new OpenGUI();
 
     }

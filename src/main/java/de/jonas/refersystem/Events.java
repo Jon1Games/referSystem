@@ -44,6 +44,10 @@ public class Events {
         MiniMessage mm = MiniMessage.miniMessage();
         DataBasePool db = ReferSystem.INSTACE.dbPool;
         e.getWhoClicked().closeInventory();
+        if (e.getWhoClicked().getInventory().firstEmpty() == -1) {
+            e.getWhoClicked().sendMessage(mm.deserialize("Du hast nicht genug Platz im Inventar um dies einzusammeln."));
+            return;
+        }
         new UseNextChatInput((Player) e.getWhoClicked())
         .sendMessage("Schreibe den Namen des Spielers der dich eingeladen hat in den Chat.<br>Nutze \"exit\" um abzubrechen.")
         .setChatEvent((sender, message) -> {
@@ -61,6 +65,10 @@ public class Events {
 
             if (player.isOnline()) {
                 Player p = player.getPlayer();
+                if (p.getInventory().firstEmpty() == -1) {
+                    e.getWhoClicked().sendMessage(mm.deserialize("Der spieler den du referst hat nicht genug PLatz im Inventar."));
+                    return;
+                }
                 Rewards.reward1(p);
             } else {
                 DataBasePool.setTableFromDBRewards(db, player.getUniqueId());
