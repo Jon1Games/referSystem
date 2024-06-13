@@ -1,16 +1,17 @@
 package de.jonas.refersystem;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import de.jonas.refersystem.commands.OpenGUI;
 import de.jonas.refersystem.listener.CheckRewards;
 import de.jonas.stuff.Stuff;
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.sql.SQLException;
-import java.util.logging.Level;
 
 public final class ReferSystem extends JavaPlugin {
 
