@@ -106,7 +106,7 @@ public class MainGUI implements InventoryHolder {
                 .setMaterial(Material.RED_WOOL)
                 .setGlint(false)
                 .addLoreLine("<red>Spiele 12 Stunden um diese Belohnung zu erhalten!</red>")
-                .setName("<red>Deine Reise beginnt Stunden</red>")
+                .setName("<red>Deine Reise hat gerade erst begonnen</red>")
                 .whenClicked("referSystem:cancel_event")
                 .build());
         }
