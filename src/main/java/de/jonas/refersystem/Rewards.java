@@ -6,6 +6,9 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import me.ryanhamshire.GriefPrevention.GriefPrevention;
+import me.ryanhamshire.GriefPrevention.PlayerData;
+
 public class Rewards {
 
     public static NamespacedKey firstReward = new NamespacedKey("refersystem","first_reward");
@@ -30,7 +33,10 @@ public class Rewards {
     public static void reward3(Player p) {
         ItemStack itemStack = new ItemStack(Material.EMERALD_BLOCK);
         itemStack.setAmount(8);
-//hier bitte noch 10.000 Claimblöcke adden
+        PlayerData pd = GriefPrevention.instance.dataStore.getPlayerData(p.getUniqueId());
+        int remaining = pd.getRemainingClaimBlocks();
+        pd.setAccruedClaimBlocks(remaining += 10000);
+        GriefPrevention.instance.dataStore.savePlayerData(p.getUniqueId(), pd);
         p.getInventory().addItem(itemStack);
     }
 
