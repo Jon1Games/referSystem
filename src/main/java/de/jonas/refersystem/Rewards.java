@@ -19,11 +19,9 @@ public class Rewards {
     public static void reward1(Player p) {
         MiniMessage mm = MiniMessage.miniMessage();
         ItemStack itemStack = new ItemStack(Material.DIAMOND);
-        itemStack.setAmount(4);
+        itemStack.setAmount(6);
         p.getInventory().addItem(itemStack);
-        String coin_command = "eco add " + p.getName()+" 200";
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), coin_command);
-        p.sendMessage(mm.deserialize("Du hast <aqua>4 Diamanten</aqua> und <yellow>200</yellow> <gold>Coins</gold> erhalten."));
+        p.sendMessage(mm.deserialize("Du hast <aqua>4 Diamanten</aqua> erhalten."));
     }
 
     public static void reward2(Player p) {

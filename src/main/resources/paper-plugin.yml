@@ -1,7 +1,8 @@
 name: referSystem
-version: '${version}'
+version: "${version}"
 main: de.jonas.refersystem.ReferSystem
-api-version: '1.20'
+api-version: "1.21"
+loader: de.jonas.refersystem.ReferSystemLoader
 dependencies:
   server:
     Stuff:

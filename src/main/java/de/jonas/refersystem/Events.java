@@ -1,12 +1,14 @@
 package de.jonas.refersystem;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.persistence.PersistentDataType;
-import java.util.*;
+
 import de.jonas.refersystem.gui.MainGUI;
 import de.jonas.stuff.Stuff;
 import de.jonas.stuff.interfaced.ClickEvent;
@@ -76,8 +78,8 @@ public class Events {
             }
 
             Rewards.reward1(sender);
-            sender.sendMessage(mm.deserialize(conf.getString("Messages.SetInviter")));
             sender.getPersistentDataContainer().set(Rewards.firstReward, PersistentDataType.BOOLEAN, true);
+            sender.sendMessage(mm.deserialize(conf.getString("Messages.SetInviter")));
 
         })
         .capture();
